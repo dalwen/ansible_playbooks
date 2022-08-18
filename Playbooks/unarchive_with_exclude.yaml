@@ -1,0 +1,9 @@
+- hosts: raspberry
+  tasks:
+    - name: Copy content to remote and unpack, excluding all the json files
+      unarchive:
+        src: /home/ansible/Playbooks/test.tgz
+        dest: /home/pi/testdir
+        exclude:
+          - "*.json"
+
