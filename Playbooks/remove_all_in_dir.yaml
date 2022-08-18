@@ -1,0 +1,10 @@
+- hosts: raspberry
+  tasks:
+    - name: Another way to remove all contents in a dir is to remove all and re-create
+      file:
+        path: "/home/pi/testdir2/"
+        state: "{{ item }}"
+      with_items: 
+        - absent
+        - directory    
+
