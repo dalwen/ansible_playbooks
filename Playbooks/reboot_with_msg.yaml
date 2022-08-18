@@ -1,0 +1,7 @@
+
+- hosts: raspberry
+  tasks:
+    - name: Reboot the machine. Msg in auth.log. Use sudo last -x reboot to see when machine was rebooted
+      become: true
+      reboot:
+        msg: "Reboot is initiated"
