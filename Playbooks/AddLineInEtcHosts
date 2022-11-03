@@ -1,0 +1,11 @@
+- hosts: test
+  tasks:
+    - name: Test for line
+      shell: grep -c "^192.168.4.100" /etc/hosts || true
+      register: test_grep
+    - name:  Add host to /etc/hosts file
+      become: yes
+      lineinfile:
+        path: /etc/hosts
+        line: 192.168.4.100 test.com
+      when: test_grep.stdout == "0"
