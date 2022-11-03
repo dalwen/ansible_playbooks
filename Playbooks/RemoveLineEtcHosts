@@ -1,0 +1,8 @@
+- hosts: test
+  tasks:
+    - name:  Remove host in /etc/hosts file
+      become: yes
+      lineinfile:
+        path: /etc/hosts
+        state: absent
+        regexp: '^192.168.4.100'
