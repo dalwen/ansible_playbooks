@@ -1,0 +1,21 @@
+- hosts: raspberry
+  tasks:
+   - name: Remove content in directory
+     file:
+       path: "/home/pi/dir1/"
+       state: "{{ item }}"
+     with_items:
+       - absent
+       - directory
+   - name: Copy to remote and unpack
+     unarchive:
+        src: /home/me/Updates/file.tgz
+        dest: /home/pi/dir1
+     notify:
+        - Restart api service
+  handlers:
+    - name: Restart api service
+      become: yes
+      systemd:
+        name: myapi
+        state: restarted
