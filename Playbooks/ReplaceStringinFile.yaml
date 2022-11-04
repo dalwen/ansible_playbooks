@@ -1,0 +1,7 @@
+- hosts: test
+  tasks:
+    - name:  Replace Uri in appsettings.json file
+      replace:
+        path: /home/pi/test/appsettings.json
+        regexp: 'http:\/\/dev\.site\.com'
+        replace: "https://newdev.site.com"
