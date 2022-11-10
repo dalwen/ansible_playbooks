@@ -1,0 +1,13 @@
+- hosts: raspberry
+  tasks:
+    - name:  Replace NTP in timesyncd.conf file
+      become: yes
+      lineinfile:
+        path: /etc/systemd/timesyncd.conf
+        regexp: '^#NTP='
+        line: "NTP=10.1.10.10"
+      notify: Enable NTP
+  handlers:
+    - name: Enable NTP
+      become: yes
+      command: timedatectl set-ntp on
